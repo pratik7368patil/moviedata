@@ -8,6 +8,7 @@ import Box from "@material-ui/core/Box";
 import Rating from "@material-ui/lab/Rating";
 import Backdrop from "@material-ui/core/Backdrop";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import CardContent from "@material-ui/core/CardContent";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,8 +20,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   imgMain: {
-    height: "500px",
-    marginTop: 1,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -29,12 +28,8 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 5,
     marginLeft: 1,
     marginTop: 1,
-    height: "100%",
     maxWidth: "350px",
     width: "350px",
-    [theme.breakpoints.down("sm")]: {
-      height: "500px",
-    },
   },
   rating: {
     display: "flex",
@@ -57,7 +52,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Movie(props) {
   const classes = useStyles();
-
   const { currentMovie, addToWatchlist, removeFromWatchlist } = props;
 
   if (Object.keys(currentMovie).length !== 0) {
@@ -68,14 +62,17 @@ export default function Movie(props) {
             "Poster not available"
           ) : (
             <CardMedia
+              component="img"
+              alt={currentMovie.Title}
               className={classes.media}
+              height="500"
               image={currentMovie.Poster}
               title={currentMovie.Title}
             />
           )}
         </div>
 
-        <div className={classes.content}>
+        <CardContent>
           <Typography gutterBottom variant="h2" component="h2">
             <Box fontWeight="fontWeightBold">{currentMovie.Title}</Box>
           </Typography>
@@ -124,13 +121,14 @@ export default function Movie(props) {
                 : "Add to Watchlist"}
             </Button>
           </Box>
-        </div>
+        </CardContent>
       </Paper>
     );
   } else {
-    <Backdrop className={classes.backdrop}>
-      <CircularProgress color="inherit" />
-    </Backdrop>;
+    return (
+      <Backdrop className={classes.backdrop}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
+    );
   }
-  return null;
 }
