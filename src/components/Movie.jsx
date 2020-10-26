@@ -6,6 +6,8 @@ import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
 import Rating from "@material-ui/lab/Rating";
+import Backdrop from "@material-ui/core/Backdrop";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,14 +19,21 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   imgMain: {
-    height: "100%",
+    height: "87vh",
     marginTop: 1,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+  },
+  media: {
+    borderRadius: 5,
+    marginLeft: 1,
+    marginTop: 1,
+    height: "100%",
+    maxWidth: "350px",
+    width: "350px",
     [theme.breakpoints.down("sm")]: {
       height: "500px",
-      width: "100%",
     },
   },
   rating: {
@@ -33,17 +42,6 @@ const useStyles = makeStyles((theme) => ({
   },
   starIcon: {
     color: "#fc0",
-  },
-  media: {
-    borderRadius: 5,
-    marginLeft: 1,
-    height: "100%",
-    width: "350px",
-    [theme.breakpoints.down("sm")]: {
-      height: "100%",
-      maxWidth: "350px",
-      width: "100%",
-    },
   },
   content: {
     padding: 20,
@@ -129,6 +127,10 @@ export default function Movie(props) {
         </div>
       </Paper>
     );
+  } else {
+    <Backdrop className={classes.backdrop}>
+      <CircularProgress color="inherit" />
+    </Backdrop>;
   }
   return null;
 }

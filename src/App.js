@@ -95,6 +95,7 @@ function App(props) {
     handleClose();
   }
 
+  // watchlist part
   function addToWatchlist(id) {
     const copyCurrentMovie = { ...currentMovie };
     copyCurrentMovie.isWachlisted = !copyCurrentMovie.isWachlisted;
@@ -122,6 +123,7 @@ function App(props) {
     setWatchlist(newWatchlist);
   }
 
+  // control loading part
   const [loadingStatus, setLoadingStatus] = React.useState(false);
   const handleClose = () => {
     setLoadingStatus(false);
