@@ -6,13 +6,10 @@ import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
 import Rating from "@material-ui/lab/Rating";
-import Backdrop from "@material-ui/core/Backdrop";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import CardContent from "@material-ui/core/CardContent";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: "89vh",
     padding: 10,
     display: "flex",
     [theme.breakpoints.down("sm")]: {
@@ -54,81 +51,73 @@ export default function Movie(props) {
   const classes = useStyles();
   const { currentMovie, addToWatchlist, removeFromWatchlist } = props;
 
-  if (Object.keys(currentMovie).length !== 0) {
-    return (
-      <Paper className={classes.root} elevation={0}>
-        <div className={classes.imgMain}>
-          {currentMovie.Poster === "N/A" ? (
-            "Poster not available"
-          ) : (
-            <CardMedia
-              component="img"
-              alt={currentMovie.Title}
-              className={classes.media}
-              height="500"
-              image={currentMovie.Poster}
-              title={currentMovie.Title}
-            />
-          )}
-        </div>
+  return (
+    <Paper className={classes.root} elevation={0}>
+      <div className={classes.imgMain}>
+        {currentMovie.Poster === "N/A" ? (
+          "Poster not available"
+        ) : (
+          <CardMedia
+            component="img"
+            alt={currentMovie.Title}
+            className={classes.media}
+            height="500"
+            image={currentMovie.Poster}
+            title={currentMovie.Title}
+          />
+        )}
+      </div>
 
-        <CardContent>
-          <Typography gutterBottom variant="h2" component="h2">
-            <Box fontWeight="fontWeightBold">{currentMovie.Title}</Box>
-          </Typography>
-          <Typography gutterBottom variant="body1" component="p">
-            {`${currentMovie.Genre} | ${currentMovie.Year}`}
-          </Typography>
-          <Typography
-            gutterBottom
-            variant="h5"
-            component="h5"
-            className={classes.rating}
-          >
-            <Rating
-              name="read-only"
-              value={currentMovie.imdbRating / 2}
-              readOnly
-              precision={0.5}
-            />
-            <Box fontWeight="fontWeightBold" ml={2}>
-              {currentMovie.imdbRating}
-            </Box>
-          </Typography>
-          <Typography variant="body1" color="textSecondary" component="div">
-            {currentMovie.Plot}
-          </Typography>
-          <Typography variant="body1">
-            <Box fontWeight="fontWeightBold" mt={3} component="div">
-              {currentMovie.Actors}
-            </Box>
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="div">
-            <Box mt={3}>{currentMovie.Language}</Box>
-          </Typography>
-          <Box mt={3}>
-            <Button
-              variant="contained"
-              className={classes.btn}
-              onClick={() =>
-                currentMovie.isWachlisted
-                  ? removeFromWatchlist(currentMovie.imdbID)
-                  : addToWatchlist(currentMovie.imdbID)
-              }
-            >
-              {currentMovie.isWachlisted
-                ? "Remove from Watchlist"
-                : "Add to Watchlist"}
-            </Button>
+      <CardContent>
+        <Typography gutterBottom variant="h2" component="h2">
+          <Box fontWeight="fontWeightBold">{currentMovie.Title}</Box>
+        </Typography>
+        <Typography gutterBottom variant="body1" component="p">
+          {`${currentMovie.Genre} | ${currentMovie.Year}`}
+        </Typography>
+        <Typography
+          gutterBottom
+          variant="h5"
+          component="h5"
+          className={classes.rating}
+        >
+          <Rating
+            name="read-only"
+            value={currentMovie.imdbRating / 2}
+            readOnly
+            precision={0.5}
+          />
+          <Box fontWeight="fontWeightBold" ml={2}>
+            {currentMovie.imdbRating}
           </Box>
-        </CardContent>
-      </Paper>
-    );
-  } else {
-    return (
-      <Backdrop className={classes.backdrop}>
-        <CircularProgress color="inherit" />
-      </Backdrop>
-    );
-  }
+        </Typography>
+        <Typography variant="body1" color="textSecondary" component="div">
+          {currentMovie.Plot}
+        </Typography>
+        <Typography variant="body1">
+          <Box fontWeight="fontWeightBold" mt={3} component="div">
+            {currentMovie.Actors}
+          </Box>
+        </Typography>
+        <Typography variant="body2" color="textSecondary" component="div">
+          <Box mt={3}>{currentMovie.Language}</Box>
+        </Typography>
+        <Box mt={3}>
+          <Button
+            variant="contained"
+            className={classes.btn}
+            onClick={() =>
+              currentMovie.isWachlisted
+                ? removeFromWatchlist(currentMovie.imdbID)
+                : addToWatchlist(currentMovie.imdbID)
+            }
+          >
+            {currentMovie.isWachlisted
+              ? "Remove from Watchlist"
+              : "Add to Watchlist"}
+          </Button>
+        </Box>
+      </CardContent>
+    </Paper>
+  );
 }
