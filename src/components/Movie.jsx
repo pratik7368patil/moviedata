@@ -25,8 +25,8 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 5,
     marginLeft: 1,
     marginTop: 1,
-    maxWidth: "350px",
-    width: "350px",
+    maxWidth: "320px",
+    width: "320px",
   },
   rating: {
     display: "flex",
