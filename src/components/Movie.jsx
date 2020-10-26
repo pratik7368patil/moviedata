@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   imgMain: {
-    height: "87vh",
+    height: "500px",
     marginTop: 1,
     display: "flex",
     justifyContent: "center",
