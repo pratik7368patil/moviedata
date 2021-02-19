@@ -1,3 +1,6 @@
+# Check hosted link
+Search your favorite movie [Click Here](https://moviedata.netlify.app/)
+
 ## How to run locally
 
 Clone above repository in your machine using
